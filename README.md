@@ -1,5 +1,8 @@
 ### Meshtastic MQTT Client
 
+![Screenshot from 2024-02-22 14-57-40](https://github.com/kvj/hass_Mtastic_MQTT/assets/159124/51051405-f700-41d0-b6f5-02000cabeef1)
+
+
   * At this stage, integration only supports unencrypted JSON MQTT outputs, available through the HA MQTT Server
   * Exposes various sensor values available from Meshtastic nodes
   * Implements Device Tracker showing latest reported position
@@ -10,6 +13,9 @@
   * Install this repo via HACS (custom integration repository)
 
 ### Configuration
+
+![Screenshot from 2024-02-22 14-58-00](https://github.com/kvj/hass_Mtastic_MQTT/assets/159124/487498d2-381c-44da-81ef-62edcb6b2934)
+
 
   * In order to register new node in your Home Assistant, you need 2-3 things:
     * Node ID: e.g. `!aabbccdd`
