@@ -1,0 +1,5 @@
+{
+    "name": "Meshtastic MQTT Client",
+    "domains": ["sensor"],
+    "render_readme": true
+}

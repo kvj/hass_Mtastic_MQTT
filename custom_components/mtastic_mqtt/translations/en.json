@@ -1,0 +1,31 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "description": "New Node",
+        "data": {
+          "id": "Node ID (!aabbccdd)",
+          "json_topic": "JSON MQTT Topic (example: msh/2/json/LongFast/!aabbccdd)",
+          "stat_topic": "Stat MQTT Topic (example: msh/2/stat/!aabbccdd)"
+        }
+      }
+    },
+    "error": {
+      "invalid_id": "Invalid Node ID value"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "description": "Configure Node",
+        "data": {
+          "json_topic": "JSON MQTT Topic (example: msh/2/json/LongFast/!aabbccdd)",
+          "stat_topic": "Stat MQTT Topic (example: msh/2/stat/!aabbccdd)"
+        }
+      }
+    },
+    "error": {
+      "invalid_id": "Invalid Node ID value"
+    }
+  }
+}
