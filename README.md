@@ -14,14 +14,14 @@
 
 ### Configuration
 
-![Screenshot from 2024-02-22 14-58-00](https://github.com/kvj/hass_Mtastic_MQTT/assets/159124/487498d2-381c-44da-81ef-62edcb6b2934)
-
-
   * In order to register new node in your Home Assistant, you need 2-3 things:
     * Node ID: e.g. `!aabbccdd`
     * Protobuf MQTT topic: e.g. `msh/EU_868/2/c/LongFast/!aabbccdd`
     * Optionally, Base64 encoded encryption key as it appears in the mobile app (copy/paste)
     * Optionally, stat MQTT topic: e.g. `msh/EU_868/2/stat/!aabbccdd`
+
+![Screenshot from 2024-02-23 14-40-32](https://github.com/kvj/hass_Mtastic_MQTT/assets/159124/142054d0-1872-481e-9961-4dcf9c219730)
+
 
 #### How to make Meshtastic public MQTT server data available in your local MQTT server?
 
