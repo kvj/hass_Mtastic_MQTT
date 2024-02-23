@@ -1,7 +1,7 @@
 ### Meshtastic MQTT Client
 
   * Integration uses Protobuf MQTT outputs, available through the HA MQTT Server. No JSON outputs are needed
-  * Supports enrypted outputs
+  * Supports encrypted outputs
   * Exposes various sensor values available from Meshtastic nodes
   * Implements Device Tracker showing latest reported position
 
