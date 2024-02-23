@@ -9,8 +9,7 @@ _LOGGER = logging.getLogger(__name__)
 
 async def async_setup_entry(hass, entry, async_setup_entities):
     coordinator = hass.data[DOMAIN]["devices"][entry.entry_id]
-    if coordinator._stat_subs:
-        async_setup_entities([_Position(coordinator)])
+    async_setup_entities([_Position(coordinator)])
 
 class _Position(BaseEntity, device_tracker.TrackerEntity):
 
@@ -35,7 +34,7 @@ class _Position(BaseEntity, device_tracker.TrackerEntity):
 
     @property
     def battery_level(self) -> int | None:
-        if tel := self.coordinator.data.get("telemetry"):
+        if tel := self.coordinator.data.get("device_metrics"):
             if (value := tel.get("battery_level")) > 0:
                 return value
         return None

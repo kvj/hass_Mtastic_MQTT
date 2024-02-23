@@ -31,7 +31,7 @@ class _TelemetryBattery(BaseEntity, sensor.SensorEntity):
 
     @property
     def native_value(self) -> float | None:
-        if tel := self.coordinator.data.get("telemetry"):
+        if tel := self.coordinator.data.get("device_metrics"):
             if (value := tel.get("battery_level")) > 0:
                 return value
         return None
@@ -50,7 +50,7 @@ class _TelemetryVoltage(BaseEntity, sensor.SensorEntity):
 
     @property
     def native_value(self) -> float | None:
-        if tel := self.coordinator.data.get("telemetry"):
+        if tel := self.coordinator.data.get("device_metrics"):
             if (value := tel.get("voltage")) > 0:
                 return value
         return None
@@ -69,7 +69,7 @@ class _TelemetryAirtimelUtil(BaseEntity, sensor.SensorEntity):
 
     @property
     def native_value(self) -> float | None:
-        if tel := self.coordinator.data.get("telemetry"):
+        if tel := self.coordinator.data.get("device_metrics"):
             if value := tel.get("air_util_tx"):
                 return value
         return None
@@ -88,7 +88,7 @@ class _TelemetryChannelUtil(BaseEntity, sensor.SensorEntity):
 
     @property
     def native_value(self) -> float | None:
-        if tel := self.coordinator.data.get("telemetry"):
+        if tel := self.coordinator.data.get("device_metrics"):
             if value := tel.get("channel_utilization"):
                 return value
         return None
@@ -107,7 +107,7 @@ class _TelemetryChannelUtil(BaseEntity, sensor.SensorEntity):
 
     @property
     def native_value(self) -> float | None:
-        if tel := self.coordinator.data.get("telemetry"):
+        if tel := self.coordinator.data.get("device_metrics"):
             if value := tel.get("channel_utilization"):
                 return value
         return None
