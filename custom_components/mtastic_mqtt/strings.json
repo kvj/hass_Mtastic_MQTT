@@ -4,9 +4,11 @@
       "user": {
         "description": "New Node",
         "data": {
+          "title": "Title",
           "id": "Node ID (!aabbccdd)",
-          "json_topic": "JSON MQTT Topic (example: msh/2/json/LongFast/!aabbccdd)",
-          "stat_topic": "Stat MQTT Topic (example: msh/2/stat/!aabbccdd)"
+          "pb_topic": "Protobuf MQTT Topic (example: msh/2/c/LongFast/!aabbccdd)",
+          "stat_topic": "Stat MQTT Topic (example: msh/2/stat/!aabbccdd)",
+          "key": "Channel encryption key (Base64 encoded)"
         }
       }
     },
@@ -19,8 +21,9 @@
       "init": {
         "description": "Configure Node",
         "data": {
-          "json_topic": "JSON MQTT Topic (example: msh/2/json/LongFast/!aabbccdd)",
-          "stat_topic": "Stat MQTT Topic (example: msh/2/stat/!aabbccdd)"
+          "pb_topic": "Protobuf MQTT Topic (example: msh/2/c/LongFast/!aabbccdd)",
+          "stat_topic": "Stat MQTT Topic (example: msh/2/stat/!aabbccdd)",
+          "key": "Channel encryption key (Base64 encoded)"
         }
       }
     },
