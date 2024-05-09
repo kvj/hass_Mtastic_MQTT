@@ -31,6 +31,8 @@
 ```
 connection meshtastic
 address mqtt.meshtastic.org
+remote_username meshdev
+remote_password large4cats
 
 topic +/+/!e2e2xxxx in 0 meshtastic/ msh/EU_868/2/
 topic +/+/!3032yyyy in 0 meshtastic/ msh/EU_868/2/
