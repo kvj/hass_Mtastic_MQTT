@@ -6,7 +6,7 @@
         "data": {
           "title": "Title",
           "id": "Node ID (!aabbccdd)",
-          "pb_topic": "Protobuf MQTT Topic (example: msh/2/c/LongFast/!aabbccdd)",
+          "pb_topic": "Protobuf MQTT Topic (example: msh/2/e/LongFast/!aabbccdd)",
           "stat_topic": "Stat MQTT Topic (example: msh/2/stat/!aabbccdd)",
           "key": "Channel encryption key (Base64 encoded)"
         }
@@ -21,7 +21,7 @@
       "init": {
         "description": "Configure Node",
         "data": {
-          "pb_topic": "Protobuf MQTT Topic (example: msh/2/c/LongFast/!aabbccdd)",
+          "pb_topic": "Protobuf MQTT Topic (example: msh/2/e/LongFast/!aabbccdd)",
           "stat_topic": "Stat MQTT Topic (example: msh/2/stat/!aabbccdd)",
           "key": "Channel encryption key (Base64 encoded)"
         }
