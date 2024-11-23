@@ -8,7 +8,7 @@ import logging
 _LOGGER = logging.getLogger(__name__)
 
 async def async_setup_entry(hass, entry, async_setup_entities):
-    coordinator = hass.data[DOMAIN]["devices"][entry.entry_id]
+    coordinator = entry.runtime_data
     async_setup_entities([
         _LastUpdate(coordinator),
         _TelemetryBattery(coordinator),
@@ -37,7 +37,7 @@ class _TelemetryBattery(BaseEntity, sensor.SensorEntity):
     def native_value(self) -> float | None:
         if tel := self.coordinator.data.get("device_metrics"):
             if (value := tel.get("battery_level")) > 0:
-                return value
+                return 100 if value > 100 else value
         return None
 
 class _TelemetryVoltage(BaseEntity, sensor.SensorEntity):

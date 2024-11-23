@@ -58,9 +58,6 @@ class Coordinator(DataUpdateCoordinator):
         self._entry = entry
         self._entry_id = entry.entry_id
 
-        self._config = entry.as_dict()["options"]
-        self._node_id = self._config["id"]
-        self._id = int(self._node_id[1:], 16)
 
     async def _async_update(self):
         return self._platform.get_data(self._entry_id)
@@ -73,6 +70,9 @@ class Coordinator(DataUpdateCoordinator):
         await self._platform.async_put_data(self._entry_id, self.data)
 
     async def async_load(self):
+        self._config = self._entry.as_dict()["options"]
+        self._node_id = self._config["id"]
+        self._id = int(self._node_id[1:], 16)
         _LOGGER.debug(f"async_load: {self._config}, {self.data}, {self._node_id}, {self._id}")
         self._data_subs = await mqtt_client.async_subscribe(self.hass, self._config.get("pb_topic"), self._async_on_pb_message, encoding=None)
         self._stat_subs = None
@@ -82,8 +82,10 @@ class Coordinator(DataUpdateCoordinator):
     async def async_unload(self):
         _LOGGER.debug(f"async_unload:")
         self._data_subs()
+        self._data_subs = None
         if self._stat_subs:
             self._stat_subs()
+            self._stat_subs = None
 
     async def _async_process_message(self, obj):
         _LOGGER.debug(f"_async_process_message: JSON[{self._id}]: {obj}")

@@ -8,7 +8,7 @@ import logging
 _LOGGER = logging.getLogger(__name__)
 
 async def async_setup_entry(hass, entry, async_setup_entities):
-    coordinator = hass.data[DOMAIN]["devices"][entry.entry_id]
+    coordinator = entry.runtime_data
     if coordinator._stat_subs:
         async_setup_entities([_Online(coordinator)])
 
