@@ -11,11 +11,15 @@ async def async_setup_entry(hass, entry, async_setup_entities):
     coordinator = hass.data[DOMAIN]["devices"][entry.entry_id]
     async_setup_entities([
         _LastUpdate(coordinator),
-        _TelemetryBattery(coordinator), 
+        _TelemetryBattery(coordinator),
         _TelemetryVoltage(coordinator),
         _TelemetryAirtimelUtil(coordinator),
         _TelemetryChannelUtil(coordinator),
         _Neighbors(coordinator),
+        _TelemetryTemperature(coordinator),
+        _TelemetryRelativeHumidity(coordinator),
+        _TelemetryBarometricPressure(coordinator),
+        _TelemetryGasResistance(coordinator),
     ])
 
 class _TelemetryBattery(BaseEntity, sensor.SensorEntity):
@@ -152,3 +156,76 @@ class _Neighbors(BaseEntity, sensor.SensorEntity):
                 return value
         return None
 
+
+class _TelemetryTemperature(BaseEntity, sensor.SensorEntity):
+
+    def __init__(self, coordinator):
+        super().__init__(coordinator)
+        self.with_name(f"tel_temperature", "Temperature")
+        self._attr_device_class = sensor.SensorDeviceClass.TEMPERATURE
+        self._attr_state_class = "measurement"
+        self._attr_native_unit_of_measurement = "°C"
+        self._attr_suggested_display_precision = 1
+        self._attr_entity_registry_enabled_default = False
+
+    @property
+    def native_value(self) -> float | None:
+        if tel := self.coordinator.data.get("environment_metrics"):
+            if (value := tel.get("temperature")) > 0:
+                return value
+        return None
+
+
+class _TelemetryRelativeHumidity(BaseEntity, sensor.SensorEntity):
+
+    def __init__(self, coordinator):
+        super().__init__(coordinator)
+        self.with_name(f"tel_relativehumidity", "Relative Humidity")
+        self._attr_device_class = sensor.SensorDeviceClass.HUMIDITY
+        self._attr_state_class = "measurement"
+        self._attr_native_unit_of_measurement = "%"
+        self._attr_suggested_display_precision = 1
+        self._attr_entity_registry_enabled_default = False
+
+    @property
+    def native_value(self) -> float | None:
+        if tel := self.coordinator.data.get("environment_metrics"):
+            if (value := tel.get("relative_humidity")) > 0:
+                return value
+        return None
+
+
+class _TelemetryBarometricPressure(BaseEntity, sensor.SensorEntity):
+
+    def __init__(self, coordinator):
+        super().__init__(coordinator)
+        self.with_name(f"tel_barometric_pressure", "Barometric Pressure")
+        self._attr_device_class = sensor.SensorDeviceClass.ATMOSPHERIC_PRESSURE
+        self._attr_state_class = "measurement"
+        self._attr_native_unit_of_measurement = "hPa"
+        self._attr_suggested_display_precision = 1
+        self._attr_entity_registry_enabled_default = False
+
+    @property
+    def native_value(self) -> float | None:
+        if tel := self.coordinator.data.get("environment_metrics"):
+            if (value := tel.get("barometric_pressure")) > 0:
+                return value
+        return None
+
+class _TelemetryGasResistance(BaseEntity, sensor.SensorEntity):
+
+    def __init__(self, coordinator):
+        super().__init__(coordinator)
+        self.with_name(f"tel_gas_resistance", "Gas Resistance (AQI)")
+        self._attr_device_class = sensor.SensorDeviceClass.AQI
+        self._attr_state_class = "measurement"
+        self._attr_suggested_display_precision = 1
+        self._attr_entity_registry_enabled_default = False
+
+    @property
+    def native_value(self) -> float | None:
+        if tel := self.coordinator.data.get("environment_metrics"):
+            if (value := tel.get("gas_resistance")) > 0:
+                return value
+        return None
